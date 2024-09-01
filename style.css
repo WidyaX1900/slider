@@ -1,5 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
+
+/* VARIABLES */
+:root {
+  --button-element: 40px;
+}
+/* VARIABLES */
+
+/* NAVBAR CSS */
+nav {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  padding: 20px 100px;
+  gap: 80px;
+  background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0));
+  z-index: 999;
+}
+
+nav a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: brown;
+}
+/* NAVBAR CSS */
+
+/* CONTENT CSS */
+.slider {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.slider .content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 1;
+}
+
+.slider .content .information {
+  position: absolute;
+  z-index: 2;
+  top: 20%;
+  left: 8%;
+  color: white;
+}
+
+.slider .content .information h1 {
+  font-size: 4.5rem;
+  text-transform: uppercase;
+}
+
+.slider .content .information .description {
+  margin-top: 8px;
+}
+
+.slider .content .information .description .story {
+  width: 55%;
+}
+
+.slider .content .information .description .story p {
+  margin-top: 5px;
+  line-height: 25px;
+  text-shadow: 2px 2px 8px #000;
+}
+
+.slider .content .information .description .alignment,
+.slider .content .information .description .affiliation {
+  display: flex;
+  gap: 20px;
+}
+
+.slider .content .information .description .alignment ul li,
+.slider .content .information .description .affiliation ul li {
+  margin-bottom: 10px;
+}
+
+.slider .content .information .description .affiliation,
+.slider .content .information .description .alignment {
+  margin-top: 20px;
+}
+
+.slider .content:nth-child(2) {
+  z-index: 2;
+}
+
+.slider .content:nth-child(3) {
+  z-index: 3;
+}
+
+.slider .content:nth-child(4) {
+  z-index: 4;
+}
+
+.slider .content:last-child {
+  z-index: 5;
+}
+
+.slider .arrow-buttons {
+  position: absolute;
+  z-index: 999;
+  bottom: 5%;
+  left: 47%;
+}
+
+.slider .arrow-buttons button {
+  width: var(--button-element);
+  height: var(--button-element);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.3s;
+}
+
+.slider .arrow-buttons button:hover {
+  background-color: brown;
+  color: white;
+}
+
+.slider .arrow-buttons button i {
+  font-size: 1.2rem;
+}
+
+.slider .arrow-buttons button:first-child {
+  margin-right: 15px;
+}
+
+.slider .arrow-buttons button:first-child:hover {
+  transform: translateX(-8px);
+}
+
+.slider .arrow-buttons button:last-child:hover {
+  transform: translateX(8px);
+}
+
+.slider .thumbnails {
+  position: absolute;
+  bottom: 2%;
+  right: 3%;
+  width: 450px;
+  z-index: 999;
+  display: flex;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.slider .thumbnails .thumbnail-card {
+  height: 100px;
+  flex: 0 0 80px;
+  margin-right: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1.5px solid gold;
+  transition: 0.3s;
+}
+
+.slider .thumbnails .thumbnail-card:hover {
+  transform: scale(1.2);
+}
+
+.slider .thumbnails .thumbnail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 80%;
+}
+/* CONTENT CSS */
+
+/* UTILITY */
+.hidden {
+  display: none !important;
+}
+/* UTILITY */
