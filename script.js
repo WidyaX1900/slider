@@ -1,45 +1,45 @@
 const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 const items = document.querySelectorAll(".slider .content");
-const thumbnails = document.querySelectorAll(".thumbnails .thumbnail-card");
 
 let index = 0;
 let sliderInterval;
 
-// autoSlide();
 nextButton.addEventListener("click", (event) => {
-  clearInterval(sliderInterval);
-  if (index <= 3) {
-    items[0].classList.remove("base");
-    nextButton.parentElement.classList.add("disabled");
-    if (items[index + 1].classList.contains("prev")) {
-      items[index + 1].classList.remove("prev");
-    }
-    items[index + 1].classList.add("next");
+  if (index < 4) {
     index++;
+    animationHandler("next");
+    nextButton.parentElement.classList.add("disabled");
+
+    if (index == 4) nextButton.classList.add("disabled");
     setTimeout(() => {
       nextButton.parentElement.classList.remove("disabled");
     }, 1300);
-    // autoSlide();
   }
 });
 
 prevButton.addEventListener("click", (event) => {
-  clearInterval(sliderInterval);
-  if (index >= 1) {
+  if (index > 0) {
+    animationHandler("prev");
     prevButton.parentElement.classList.add("disabled");
-    if (items[index].classList.contains("next")) {
-      items[index].classList.remove("next");
-    }
-    items[index].classList.add("prev");
     index--;
+
+    if (index == 0) prevButton.classList.add("disabled");
     setTimeout(() => {
       prevButton.parentElement.classList.remove("disabled");
+      items[index + 1].classList.remove("prev");
     }, 1300);
-    // autoSlide();
   }
 });
 
-function autoSlide() {
-  sliderInterval = setInterval(() => nextButton.click(), 8000);
+function animationHandler(type) {
+  if (type == "next") {
+    items[index].classList.remove("prev");
+    items[index].classList.add("next");
+    prevButton.classList.remove("disabled");
+  } else if (type == "prev") {
+    items[index].classList.remove("next");
+    items[index].classList.add("prev");
+    nextButton.classList.remove("disabled");
+  }
 }

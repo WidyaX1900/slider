@@ -109,8 +109,8 @@ nav a:hover {
   margin-top: 20px;
 }
 
-.slider .content:first-child.base {
-  animation: base 1s ease-in forwards;
+.slider .content:first-child {
+  animation: intro 1s ease-in forwards;
 }
 
 .slider .content:nth-child(2) {
@@ -182,6 +182,11 @@ nav a:hover {
   pointer-events: none;
 }
 
+.slider .arrow-buttons button.disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
 .slider .thumbnails {
   position: absolute;
   bottom: 2%;
@@ -224,14 +229,14 @@ nav a:hover {
 
 /* ANIMATION */
 .slider .content.next {
-  animation: next 1s ease-in forwards;
+  animation: nextSlide 1s ease-in forwards;
 }
 
 .slider .content.prev {
-  animation: prev 1s ease-out forwards;
+  animation: prevSlide 1s ease-out forwards;
 }
 
-@keyframes base {
+@keyframes intro {
   from {
     transform: scale(0);
   }
@@ -241,13 +246,13 @@ nav a:hover {
   }
 }
 
-@keyframes next {
+@keyframes nextSlide {
   to {
     transform: scale(1);
   }
 }
 
-@keyframes prev {
+@keyframes prevSlide {
   from {
     transform: scale(1);
   }
