@@ -1,6 +1,9 @@
 const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 const items = document.querySelectorAll(".slider .content");
+const thumbnails = document.querySelectorAll(
+  ".slider .thumbnails .thumbnail-card"
+);
 
 let index = 0;
 let sliderInterval;
@@ -10,6 +13,7 @@ nextButton.addEventListener("click", (event) => {
     index++;
     animationHandler("next");
     nextButton.parentElement.classList.add("disabled");
+    thumbnailSelected(thumbnails[index]);
 
     if (index == 4) nextButton.classList.add("disabled");
     setTimeout(() => {
@@ -24,6 +28,7 @@ prevButton.addEventListener("click", (event) => {
     prevButton.parentElement.classList.add("disabled");
     index--;
 
+    thumbnailSelected(thumbnails[index]);
     if (index == 0) prevButton.classList.add("disabled");
     setTimeout(() => {
       prevButton.parentElement.classList.remove("disabled");
@@ -32,14 +37,46 @@ prevButton.addEventListener("click", (event) => {
   }
 });
 
-function animationHandler(type) {
+thumbnails.forEach((thumbnail, thumbIndex) => {
+  thumbnail.addEventListener("click", (event) => {
+    thumbnailSelected(thumbnail);
+    if (thumbIndex > index) {
+      for (let i = 0; i <= thumbIndex; i++) {
+        if (i != 0) {
+          animationHandler("next", i);
+        }
+      }
+    } else {
+      for (let i = index; i > thumbIndex; i--) {
+        animationHandler("prev", i);
+      }
+    }
+    index = thumbIndex;
+
+    if (index == 0) {
+      prevButton.classList.add("disabled");
+    } else if (index == 4) {
+      nextButton.classList.add("disabled");
+    }
+  });
+});
+
+function animationHandler(type, order = index) {
   if (type == "next") {
-    items[index].classList.remove("prev");
-    items[index].classList.add("next");
+    items[order].classList.remove("prev");
+    items[order].classList.add("next");
     prevButton.classList.remove("disabled");
   } else if (type == "prev") {
-    items[index].classList.remove("next");
-    items[index].classList.add("prev");
+    items[order].classList.remove("next");
+    items[order].classList.add("prev");
     nextButton.classList.remove("disabled");
   }
+}
+
+function thumbnailSelected(thumbnail) {
+  const activeThumbnail = document.querySelector(
+    ".slider .thumbnails .thumbnail-card.active"
+  );
+  activeThumbnail.classList.remove("active");
+  thumbnail.classList.add("active");
 }

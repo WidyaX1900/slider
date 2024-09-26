@@ -207,8 +207,12 @@ nav a:hover {
   margin-right: 20px;
   cursor: pointer;
   border-radius: 5px;
+  border: 1.5px solid rgb(191, 191, 191);
+  transition: transform 0.3s;
+}
+
+.slider .thumbnails .thumbnail-card.active {
   border: 1.5px solid gold;
-  transition: 0.3s;
 }
 
 .slider .thumbnails .thumbnail-card:last-child {
